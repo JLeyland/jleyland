@@ -1,0 +1,57 @@
+body {
+    background-image: url(Star-Background.jpg);
+    text-align: center;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+h2 {
+    text-align: center;
+    color: white;
+}
+
+p {
+    text-align: center;
+    color: white;
+}
+
+img {
+    display: block;
+   border-radius: 50%;
+    
+}
+
+.mediaButton {
+    width: 100px;
+    height: 40px;
+    color: white;
+    background-color: rgb(0, 0, 0);
+    border-radius: 24px;
+    border-color: rgb(255, 238, 0);
+}
+
+.button {
+    width: 100px;
+    height: 40px;
+    color: white;
+    background-color: rgb(0, 0, 0);
+    border-radius: 24px;
+    border-color: rgb(255, 238, 0);
+}
+
+.startButton {
+    color: rgb(0, 255, 0);
+    border-radius: 25pt;
+    border-color: yellow;
+}
+
+.stopButton {
+    color: rgb(255, 0, 0);
+    border-radius: 25pt;
+    border-color: yellow;
+}
+

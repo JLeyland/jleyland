@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--This was created by Jonathan Leyland for class CSC102-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--This is my title for the Program-->
+    <title>UAT Space Program</title>
+    <!--The Countdown Script-->
+    <script src="main.js"></script>
+    <script src="dataloader-1.js"></script>
+    <script>
+            //setting up my variables i need
+            var theTime = new Date();
+            var tempTime = new Date();
+            var time_interval = 5000;
+            var last_iteration = 0;
+            var running = true;
+            var index = 0;
+            var timer;
+
+            //load data into the array
+            var data = getData();
+
+            //function to load and display data
+            function updateDisplay() {
+                theTime = new Date();
+                //debugging time
+                console.log(
+                    "Display : " + (theTime.getHours() < 10 ? "0"+ theTime.getHours() : theTime.getHours()) +
+                    " : " + (theTime.getMinutes() < 10 ? "0"+ theTime.getMinutes() : theTime.getMinutes()) + 
+                    " : " + (theTime.getSeconds() < 10 ? "0"+ theTime.getSeconds() : theTime.getSeconds())
+                );
+
+                var timeRead = data[index].time_seconds;
+                if (timeRead >= 10) {
+                    document.getElementById("data").rows["seconds"].innerHTML = dataRow("Time Elapsed", data[index].time_seconds,"seconds");
+                    document.getElementById("data").rows["latitude"].innerHTML = dataRow("Latitude", data[index].latitude," ");
+                    document.getElementById("data").rows["longitude"].innerHTML = dataRow("Longitude", data[index].longitude," ");
+                    document.getElementById("data").rows["gps_altitude"].innerHTML = dataRow("gps Altitude", data[index].gps_altitude,"");
+                    document.getElementById("data").rows["bmpSensor_altitude"].innerHTML = dataRow("BMP Sensor Altitude", data[index].bmpSensor_altitude,"");
+                    document.getElementById("data").rows["bmpSensor_pressure"].innerHTML = dataRow("BMP Sensor Pressure", data[index].bmpSensor_pressure,"");
+                    document.getElementById("data").rows["bmpSensor_temp"].innerHTML = dataRow("BMP Sensor Temp", data[index].bmpSensor_temp,"");
+                    document.getElementById("data").rows["cssSensor_temp"].innerHTML = dataRow("CSS Sensor Temp", data[index].cssSensor_temp,"");
+                    document.getElementById("data").rows["cssSensor_eCO2"].innerHTML = dataRow("CSS Sensor eCO2", data[index].cssSensor_eCO2,"");
+                    document.getElementById("data").rows["cssSensor_TVOC"].innerHTML = dataRow("CSS Sensor TVOC", data[index].cssSensor_TVOC,"");
+                    document.getElementById("data").rows["UV"].innerHTML = dataRow("UV", data[index].UV,"");
+                    document.getElementById("data").rows["accelX"].innerHTML = dataRow("accelX", data[index].accelX,"");
+                    document.getElementById("data").rows["accelY"].innerHTML = dataRow("accelY", data[index].accelY,"");
+                    document.getElementById("data").rows["accelZ"].innerHTML = dataRow("accelZ", data[index].accelZ,"");
+                    document.getElementById("data").rows["magneticX"].innerHTML = dataRow("magneticX", data[index].magneticX,"");
+                    document.getElementById("data").rows["magneticY"].innerHTML = dataRow("magneticY", data[index].magneticY,"");
+                    document.getElementById("data").rows["magneticZ"].innerHTML = dataRow("magneticZ", data[index].magneticZ,"");
+                    document.getElementById("data").rows["gyroX"].innerHTML = dataRow("gyroX", data[index].gyroX,"");
+                    document.getElementById("data").rows["gyroY"].innerHTML = dataRow("gyroY", data[index].gyroY,"");
+                    document.getElementById("data").rows["gyroZ"].innerHTML = dataRow("gyroZ", data[index].gyroZ,"");
+
+                    if (index < 500) {
+                        index++;
+                    } else {
+                        index = 0;
+                    }
+                }
+
+                //displays the time at the bottom
+                document.getElementById("time").innerHTML = (theTime.getHours() < 10 ? "0"+ theTime.getHours() : theTime.getHours()) +
+                    " : " + (theTime.getMinutes() < 10 ? "0"+ theTime.getMinutes() : theTime.getMinutes()) + 
+                    " : " + (theTime.getSeconds() < 10 ? "0"+ theTime.getSeconds() : theTime.getSeconds())
+            }
+        </script>
+</head>
+<body>
+    <!--This allows the image for the background and the text to be in the-->
+    <link rel="stylesheet" type="text/css" href="Project1.css">
+    <script>
+        alert("You Are Now Entering the Final Frontier at the UAT Space Program.")
+    </script>
+    <img src="UATspaceLogo-2.jpg" />
+    <h1>
+        UAT Space Program
+    </h1>
+    <button class="mediaButton"; type="button" onclick="labStation()">Lab</button>
+    <button class="mediaButton"; type="button" onclick="playOddity()">Space Oddity</button>
+    <button class="mediaButton"; type="button" onclick="shipAlarm()">Alarm</button>
+   
+    <br><br>
+    <input id="startTButton" type="button" value="Start" onclick="startT();" class="button" />
+        <input id="stopTButton" type="button" value="Stop" onclick="stopT();" disabled=true class="button" />
+        <br><br>
+        The current time is: <div id="time"></div>
+  <!--This is the table-->
+    <table class="tableTop">
+        <tr>
+            <!--tr defines a row in a table-->
+            <td>
+                <h1>
+                    UAT Space Program
+                </h1>
+            </td>
+        </tr>
+    </table>
+    <!--This syles the data to have a black blackground, has a border of 2-->
+    <table id="data" border="2" width="70%" style="background-color: black;">
+        <col style="width: 35%;">
+        <col style="width: 35%;">
+        <thead>
+            <tr style="font-family: fantasy;">
+                <th>Data type</th>
+                <th>Reading</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="seconds"></tr>
+            <tr id="latitude"></tr>
+            <tr id="longitude"></tr>
+            <tr id="gps_altitude"></tr>
+            <tr id="bmpSensor_altitude"></tr>
+            <tr id="bmpSensor_pressure"></tr>
+            <tr id="bmpSensor_temp"></tr>
+            <tr id="digSensor_temp"></tr>
+            <tr id="cssSensor_temp"></tr>
+            <tr id="cssSensor_eCO2"></tr>
+            <tr id="cssSensor_TVOC"></tr>
+            <tr id="UV"></tr>
+            <tr id="accelX"></tr>
+            <tr id="accelY"></tr>
+            <tr id="accelZ"></tr>
+            <tr id="magneticX"></tr>
+            <tr id="magneticY"></tr>
+            <tr id="magneticZ"></tr>
+            <tr id="gyroX"></tr>
+            <tr id="gyroY"></tr>
+            <tr id="gyroZ"></tr>
+        </tbody>
+    </table>
+
+  
+    <p>
+        Click Start to Start the Countdown.
+    </p>
+
+    
+    <h1>
+        Countdown
+    </h1>
+
+    <!--Start Button-->
+    <button id="startButton" 
+    style="font-size: 25pt; 
+    border-radius: 40%; 
+    border-color: yellow;
+    background-color: black;" 
+    class="startButton"
+    type="button" onclick="startTheCountdown(), start()"><b>Start</b></button>
+   
+    <!--Stop Button-->
+    <button id="stopButton" 
+    style="font-size: 25pt; 
+    border-radius: 40%; 
+    border-color: yellow;
+    background-color: black;" 
+    class="stopButton"
+    type="button" onclick="stop();" 
+    disabled=true><b>Stop</b></button>
+
+    <p style="font-size: 25pt;" id="countdownDisplay"><b>
+    </b></p>
+    
+</body>
+</html>

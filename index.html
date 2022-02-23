@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!--Script for the login-->
+    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" href="loginStyle.css">
+</head>
+<body>
+    <!--Form-->
+    <p id="loginStatus" class="texty" >Status of login...</p>
+    <br>
+    <img src="UATspaceLogo-2.jpg" align = "right" >
+    <img align = "left" width="250" height="250" src="Starfleet.jpeg" style= "border-radius: 50%;"  />
+
+    <br>
+    <br>
+    <b><form id="credSubmit" onsubmit="return false">
+        First Name:     <input type="text" id="fName" /> <br>
+        Last Name:      <input type="text" id="lName" /> <br>
+        Badge Number:   <input type="number" id="badgeID" /> <br>
+        <input type="submit" onclick="checkCreds();" />
+    </form></b>
+
+    <br>
+
+    <!--Displays, "Would you like to play?"-->
+    <h1 style=" text-align: center;">
+        WOULD YOU LIKE TO PLAY?
+    </h1>
+    <br>
+    <!--This button is supose to "roll again".-->
+<button style="font-size: 25pt; border-radius: 40%; background-color: rgb(0, 255, 0);" type="button" onclick="play()"><b>Roll</b></button>
+<div id="die1Res">Die1 results here...</div>
+<div id="die2Res">Die2 results here...</div>
+<div id="sumRes">Sum results here...</div>
+<div id="finalRes"> Final results here...</div>
+</body>
+</html>
